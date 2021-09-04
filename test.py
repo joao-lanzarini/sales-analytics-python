@@ -1,14 +1,8 @@
+import csv
 import pandas as pd
-from random import randint
 
-inventory = pd.read_csv('inventory.csv')
+l = [[1,2,3], [4,5,6], [7,8,9]]
 
-while True:
-    rand = randint(1, 9999)
-    if rand not in inventory['id']:
-        id = rand
-        print(id)
-    else:
-        print(f'ID {id} already in use')
-        break
+del l[1]
+print(l)
 
