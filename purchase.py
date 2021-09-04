@@ -9,7 +9,7 @@ class Purchase():
     def addItems(self):
         
         while True:
-           tem = input("Código do produto: ")
+           item = input("Código do produto: ")
 
 
 
