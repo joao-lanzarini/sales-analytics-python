@@ -1,3 +1,5 @@
+import datetime
+
 class Purchase():
 
     def __init__(self, id, date):

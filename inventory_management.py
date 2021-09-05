@@ -5,14 +5,14 @@ from functions import id_check, id_generator
 
 
 
-inventory = lambda: pd.read_csv('inventory.csv', dtype={'ID':str, 'PRODUCT':str, 'PRICE':float})
+inventory = lambda: pd.read_csv('inventory.csv', dtype={'ID':str, 'PRODUCT':str, 'PRICE':float, 'AMOUNT':int})
 
-def viewInv():
+def viewInv(): # VISUALIZE THE INVENTORY
     print(inventory())
 
-def addItems(n=0):    
+def addItems(n=0): # REGISTER PRODUCTS TO THE INVENTORY
     inventory()
-    if n == 0: # ADD AN UNDEFINED AMOUNT OD PRODUCTS TO THE INVENTORY
+    if n == 0: # ADD AN UNDEFINED NUMBER OF PRODUCTS TO THE INVENTORY
         while True:
 
             id = id_generator.generate_id()
@@ -31,7 +31,7 @@ def addItems(n=0):
             print(f'{product} added at the ID {id}')
             
 
-    else: # ADD A CERTAIN AMOUNT OF PRODUCTS TO THE INVENTORY
+    else: # ADD A CERTAIN NUMBER OF PRODUCTS TO THE INVENTORY
         for i in range(n): 
 
             id = id_generator.generate_id()
@@ -45,41 +45,44 @@ def addItems(n=0):
             print(f'{product} added at the ID {id}')
 
 
-def editInventory():
+def editInventory(): # CHANGE PRICE OR AMOUNT
 
-    id = id_check.check(input('Product ID: '))
-    while not id:
-        print('ID NOT FOUND!')
-        i = input('Product ID [0 to exit]: ')
-        if i == '0':
-            break
-        else:
-            id = id_check.check(i)
+    id = False
+    i = input('Product ID [0 to exit]: ')
+    if i != '0':
+        id = id_check.check(i)
+        while not id:
+            print('ID NOT FOUND!')
+            i = input('Product ID [0 to exit]: ')
+            if i == '0':
+                break
+            else:
+                id = id_check.check(i)
         
 
     if id:
 
-        col = int(input('[1] Edit product name\n[2] Edit product price'))
+        col = int(input('[1] Edit product price\n[2] Edit product amount'))
 
         with open ('inventory.csv', 'r') as file:
             read = csv.reader(file)
             rows = list(read)
 
         if col == 1:
-            rows[id][1] = input('Enter the new name: ')
+            rows[id][2] = input(f'Enter the new {rows[id][1]} price ($): ')
 
         elif col == 2:
-            rows[id][2] = input(f'Enter the new {rows[id][1]} price ($): ')
+            rows[id][3] = input(f'How many more {rows[id][1]}?')
                 
         with open ('inventory.csv', 'w+') as file:
             
             for row in rows:
-                file.writelines(f'{row[0]},{row[1]},{row[2]}\n')
+                file.writelines(f'{row[0]},{row[1]},{row[2]},{row[4]}\n')
 
 
 
 
-def removeItems():
+def removeItems(): # PERMANENTLY REMOVES A PRODUCT FROM THE INVENTORY
 
     while True:
         
