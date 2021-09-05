@@ -15,7 +15,3 @@ class Purchase():
 
 
 
-
-i = ['apple', 'banana', 'meat', 'candies']
-c = Purchase('001', 25, i, 30, 'cash')
-

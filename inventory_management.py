@@ -42,7 +42,7 @@ def addItems(n=0): # REGISTER PRODUCTS TO THE INVENTORY
             with open ('inventory.csv', 'a') as file:
                 file.writelines(f'{id}, {product}, {price:.2f}\n')
 
-            print(f'{product} added at the ID {id}')
+            print(f'{product.capitalize()} added with the ID: {id}')
 
 
 def editInventory(): # CHANGE PRICE OR AMOUNT

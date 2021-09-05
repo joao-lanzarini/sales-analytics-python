@@ -116,3 +116,4 @@ dmypy.json
 #Testing files
 test.py
 .test.py
+tests.csv
