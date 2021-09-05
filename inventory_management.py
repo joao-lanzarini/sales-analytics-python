@@ -1,7 +1,7 @@
 import pandas as pd
 from random import randint
 import csv
-from functions import id_check
+from functions import id_check, id_generator
 
 
 
@@ -12,19 +12,14 @@ def viewInv():
 
 def addItems(n=0):    
     inventory()
-    if n == 0:
+    if n == 0: # ADD AN UNDEFINED AMOUNT OD PRODUCTS TO THE INVENTORY
         while True:
 
-            while True:
-                rand = randint(1000, 9999)
-                if rand not in inventory['ID']:
-
-                    id = rand                    
-                    break
+            id = id_generator.generate_id()
             
             product = input('Product name (0 to exit): ')
 
-            if product == '0': #CONDIÇÃO DE PARADA
+            if product == '0':
                 break
 
             else:
@@ -32,20 +27,21 @@ def addItems(n=0):
 
                 with open ('inventory.csv', 'a') as file:
                     file.writelines(f'{id}, {product}, {price:.2f}\n')
+
             print(f'{product} added at the ID {id}')
             
 
-    else:
-        for i in range(n):
-            while True:
-                rand = randint(1, 9999)
-                if rand not in inventory['ID']:
-                    id = rand
-                    break
+    else: # ADD A CERTAIN AMOUNT OF PRODUCTS TO THE INVENTORY
+        for i in range(n): 
+
+            id = id_generator.generate_id()
+
             product = input('Product name: ')
             price = float(input('Price ($):'))
+
             with open ('inventory.csv', 'a') as file:
                 file.writelines(f'{id}, {product}, {price:.2f}\n')
+
             print(f'{product} added at the ID {id}')
 
 
@@ -126,7 +122,3 @@ def removeItems():
 
         else: 
             break
-            
-
-
-addItems(1)
