@@ -2,20 +2,25 @@ from random import randint
 import pandas as pd
 
 def generate_id():
-    df = pd.read_csv('./inventory.csv')
 
-    while True:
-        random = randint(1000, 9999)
-        check = True
+    try:
+        df = pd.read_csv('./inventory.csv')
 
-        for id in df['ID']:
-            if str(random) == id:
-                check = False
+    except FileNotFoundError:
+        print('Unable to generate ID because the inventory has not been created yet.')
+        
+    else:
+
+        while True:
+            random = randint(1000, 9999)
+            check = True
+
+            for id in df['ID']:
+                if str(random) == id:
+                    check = False
+                    break
+
+            if check:
                 break
 
-        if check:
-            break
-
-    return random
-
-generate_id()
+        return random

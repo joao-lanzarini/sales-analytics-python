@@ -4,7 +4,6 @@ import csv
 from functions import id_check, id_generator
 
 
-
 inventory = lambda: pd.read_csv('inventory.csv', dtype={'ID':str, 'PRODUCT':str, 'PRICE':float, 'AMOUNT':int})
 
 def viewInv(): # VISUALIZE THE INVENTORY
