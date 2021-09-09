@@ -17,8 +17,6 @@ def menu():
 
     elif choice == 2: #INVENTORY SYSTEM
 
-        create = False
-
         try:
             with open ('inventory.csv', 'r') as file:
                 choice2 = v.valid('[1] View inventory.',
@@ -27,10 +25,9 @@ def menu():
             choice2 = v.valid('[1] View inventory.',
                             '[2] Edit items from inventory.',
                             "[3] Create your inventory (available only if it's not created yet)")
-            create = True
 
         if choice2 == 1:
-            viewInventory()
+            return 'View Inventory'
 
         elif choice2 == 2:
 
@@ -39,17 +36,17 @@ def menu():
                         '[3] Remove items from inventory.')
 
             if choice3 == 1:
-                addItems()
+                return 'Add Items'
 
             elif choice3 == 2:
-                editInventory()
+                return 'Edit Inventory'
 
             elif choice3 == 3:
-                removeItems()
+                return 'Remove Items'
 
 
         elif choice2 == 3:
-            createInventory()
+            return 'Create Inventory'
         
 
     elif choice == 3: #VIEW STATISTICS

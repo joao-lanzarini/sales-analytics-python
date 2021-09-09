@@ -46,18 +46,7 @@ def addItems(n=0): # REGISTER PRODUCTS TO THE INVENTORY
 
 def editInventory(): # CHANGE PRICE OR AMOUNT
 
-    id = False
-    i = input('Product ID [0 to exit]: ')
-    if i != '0':
-        id = id_check.check(i)
-        while not id:
-            print('ID NOT FOUND!')
-            i = input('Product ID [0 to exit]: ')
-            if i == '0':
-                break
-            else:
-                id = id_check.check(i)
-        
+    id = id_check.check(action='edit')
 
     if id:
 
@@ -84,20 +73,8 @@ def editInventory(): # CHANGE PRICE OR AMOUNT
 def removeItems(): # PERMANENTLY REMOVES A PRODUCT FROM THE INVENTORY
 
     while True:
-        
-        i = input('Product ID to remove [0 to exit]: ')
-        if i != '0':
-            id = id_check.check(i)
-            while not id:
-                print('ID NOT FOUND!')
-                i = input('Product ID to remove [0 to exit]: ')
-                if i == '0':
-                    break
-                else:
-                    id = id_check.check(i)
 
-        else:
-            break
+        id = id_check.check(action='remove')
 
         if id:
 
@@ -105,10 +82,10 @@ def removeItems(): # PERMANENTLY REMOVES A PRODUCT FROM THE INVENTORY
                 read = csv.reader(file)
                 rows = list(read)
 
-            confirmation = input(f'Are you sure you want to remove {rows[id][1].upper()} registration from the inventory?\n[Y/N]: ').upper()
+            confirmation = input(f'Are you sure you want to remove {rows[id][1].upper()} registration from the inventory?\n[Y/N]: ').upper().strip()
 
             while confirmation not in ['Y', 'YES', 'N', 'NO']:
-                confirmation = input('Unknown answer.\nType only "Y" or "N": ').upper()
+                confirmation = input('Unknown answer.\nType only "Y" or "N": ').upper().strip()
 
             if confirmation in ['Y', 'YES']:
                 rows.pop(id)
@@ -117,10 +94,15 @@ def removeItems(): # PERMANENTLY REMOVES A PRODUCT FROM THE INVENTORY
             
                     for row in rows:
                         file.writelines(f'{row[0]},{row[1]},{row[2]}\n')
-                break
+
+                print()
+                print(f'{rows[id][1].capitalize()} permanently deleted!')
+                print()
 
             else:
                 continue
 
-        else: 
+        elif not id:
             break
+
+

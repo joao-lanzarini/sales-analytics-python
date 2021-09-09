@@ -1,10 +1,8 @@
 import csv
 import pandas as pd
-from functions import valid_options as v
+from functions import id_check as id
+from datetime import date, datetime
+from home import menu
 
-choice = v.valid('[1] Start Purchases.',
-        '[2] Inventory Management.',
-        '[3] View Statistics.')
-
-
-print(choice)
+action = menu()
+print(action)

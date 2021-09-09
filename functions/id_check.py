@@ -1,25 +1,32 @@
 import csv
 
-def check(id):
+def check(file='inventory', action=''):
 
-    check = False
-    line = 0
+    while True:
+        line = 0
+        check = False
+        i = input(f'Product ID to {action} [0 to exit]: ')
+        if i != '0':
+            with open (f'./{file}.csv') as file:
+                reader = csv.reader(file)
+                lines = list(reader)
 
-    with open ('./inventory.csv') as file:
-        reader = csv.reader(file)
-        lines = list(reader)
+            for row in lines:
+                if row[0] == str(i):
+                    check = True
+                    break
+                else:
+                    line+=1
 
-        for row in lines:
-            if row[0] == str(id):
-                check = True
+            if not check:
+                print('ID NOT FOUND!')
+
+            elif check:
                 break
-            else:
-                line+=1
-            
-    if check:
-        return line
+        else:
+            line=0
+            break
 
-    elif not check:
-        return False
+    return line
 
     
