@@ -1,5 +1,10 @@
 import csv
 import pandas as pd
+from functions import valid_options as v
 
-price = float(input(f'Insert the price ($): ').replace(',','.'))
-print(f'{price:.2f}')
+choice = v.valid('[1] Start Purchases.',
+        '[2] Inventory Management.',
+        '[3] View Statistics.')
+
+
+print(choice)

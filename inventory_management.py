@@ -6,12 +6,12 @@ from functions import id_check, id_generator
 
 inventory = lambda: pd.read_csv('inventory.csv', dtype={'ID':str, 'PRODUCT':str, 'PRICE':float, 'AMOUNT':int})
 
-def viewInv(): # VISUALIZE THE INVENTORY
+def viewInventory(): # VISUALIZE THE INVENTORY
     print(inventory())
 
 def addItems(n=0): # REGISTER PRODUCTS TO THE INVENTORY
     inventory()
-    if n == 0: # ADD AN UNDEFINED NUMBER OF PRODUCTS TO THE INVENTORY
+    if n == 0:
         while True:
 
             id = id_generator.generate_id()
@@ -30,7 +30,7 @@ def addItems(n=0): # REGISTER PRODUCTS TO THE INVENTORY
             print(f'{product} added at the ID {id}')
             
 
-    else: # ADD A CERTAIN NUMBER OF PRODUCTS TO THE INVENTORY
+    else:
         for i in range(n): 
 
             id = id_generator.generate_id()
