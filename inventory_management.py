@@ -16,7 +16,7 @@ def addItems(n=0): # REGISTER PRODUCTS TO THE INVENTORY
 
             id = id_generator.generate_id()
             
-            product = input('Product name (0 to exit): ')
+            product = input('Product name (0 to exit): ').capitalize()
 
             if product == '0':
                 break
@@ -35,7 +35,7 @@ def addItems(n=0): # REGISTER PRODUCTS TO THE INVENTORY
 
             id = id_generator.generate_id()
 
-            product = input('Product name: ')
+            product = input('Product name: ').capitalize()
             price = float(input('Price ($):'))
 
             with open ('inventory.csv', 'a') as file:

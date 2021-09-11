@@ -4,5 +4,6 @@ from functions import id_check as id
 from datetime import date, datetime
 from home import menu
 
-action = menu()
-print(action)
+a = input('number here: ')
+
+print(float(a)*2)

@@ -20,7 +20,7 @@ def createInventory(): # FIRST GENERATION OF THE INVENTORY
 
             while True:
                 print()
-                prod = input('Insert the product name [0 to exit]: ')
+                prod = input('Insert the product name [0 to exit]: ').capitalize()
                 if prod == '0':
                     break
 
@@ -69,6 +69,3 @@ def createInventory(): # FIRST GENERATION OF THE INVENTORY
     elif check:
         print("Inventory already created.")
         print()
-
-
-createInventory()
